@@ -4,6 +4,7 @@ This is sample CyberArk CEM API for POSTMAN
 Please create a new enviroment: 
 
 ![alt text](https://github.com/pix3lize/CyberArkCEM-API/blob/main/Images/Enviroment%20Settings%20Small.png)
+
 Please enter your API Key and Organization 
 
 Download sample POSTMAN request JSON
