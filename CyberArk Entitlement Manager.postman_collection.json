@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "068960fc-21c2-47c8-b667-6fca5084fc81",
+		"name": "CyberArk Entitlement Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9ed2aff-bf2e-4c05-9b23-fa661d0fc186",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"TokenInfo\", jsonData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"organization\": \"{{Organization}}\",\r\n  \"accessKey\": \"{{APIKey}}\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://api.cem.cyberark.com/apis/login",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cem",
+						"cyberark",
+						"com"
+					],
+					"path": [
+						"apis",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Accounts",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TokenInfo}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.cem.cyberark.com/customer/platforms/accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cem",
+						"cyberark",
+						"com"
+					],
+					"path": [
+						"customer",
+						"platforms",
+						"accounts"
+					]
+				},
+				"description": "This method enables you to retrieve workspaces grouped by platforms."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Entities",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TokenInfo}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.cem.cyberark.com/cloudEntities/api/search?platform=aws&account_id=<<enter account id>>",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cem",
+						"cyberark",
+						"com"
+					],
+					"path": [
+						"cloudEntities",
+						"api",
+						"search"
+					],
+					"query": [
+						{
+							"key": "platform",
+							"value": "aws"
+						},
+						{
+							"key": "account_id",
+							"value": "<<enter account id>>"
+						},
+						{
+							"key": "full_admin",
+							"value": "true",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This method enables you to search for entities on any platform and retrieve entity details."
+			},
+			"response": [
+				{
+					"name": "Get Entities - AWS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TokenInfo}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.cem.cyberark.com/cloudEntities/api/search?platform=aws&account_id=311416839244",
+							"protocol": "https",
+							"host": [
+								"api",
+								"cem",
+								"cyberark",
+								"com"
+							],
+							"path": [
+								"cloudEntities",
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "platform",
+									"value": "aws"
+								},
+								{
+									"key": "account_id",
+									"value": "311416839244"
+								},
+								{
+									"key": "full_admin",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 29 Nov 2020 14:25:24 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "541"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "975f444b-18ea-4c46-bcec-1b3b627a1e6c"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "WxhVIHKHPHcFfqA="
+						},
+						{
+							"key": "X-Amzn-Trace-Id",
+							"value": "Root=1-5fc3af53-0a5e900324a316e120dd8c1f;Sampled=0"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "X-Cache",
+							"value": "Miss from cloudfront"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 bf37a08a8e52d3968f35ae1bb4eaae79.cloudfront.net (CloudFront)"
+						},
+						{
+							"key": "X-Amz-Cf-Pop",
+							"value": "SIN52-C3"
+						},
+						{
+							"key": "X-Amz-Cf-Id",
+							"value": "O8pSV69rF5Nla6ec26phZPqnp7qTaaLvVErPoeA7MvxAxajtngLtNg=="
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "cf-request-id",
+							"value": "06b5fdf7470000c3184801f000000001"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=0; includeSubDomains; preload"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "5f9cff6babedc318-SIN"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"hits\": [\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:user/hendridws\",\n            \"entityName\": \"hendridws\",\n            \"entityType\": \"User\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": true,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\",\n                \"SHADOW_ADMIN_MFA\",\n                \"SHADOW_ADMIN_PAS\"\n            ],\n            \"riskTotalScore\": 98,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport\",\n            \"entityName\": \"AWSServiceRoleForSupport\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 52,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-elasticbeanstalk-service-role\",\n            \"entityName\": \"aws-elasticbeanstalk-service-role\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 48,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:user/donotreplyfxssc\",\n            \"entityName\": \"donotreplyfxssc\",\n            \"entityType\": \"User\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 45,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling\",\n            \"entityName\": \"AWSServiceRoleForAutoScaling\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 38,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing\",\n            \"entityName\": \"AWSServiceRoleForElasticLoadBalancing\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 33,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-elasticbeanstalk-ec2-role\",\n            \"entityName\": \"aws-elasticbeanstalk-ec2-role\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 32,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-service-role/trustedadvisor.amazonaws.com/AWSServiceRoleForTrustedAdvisor\",\n            \"entityName\": \"AWSServiceRoleForTrustedAdvisor\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 30,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/CyberArkRoleForCEM023673983569\",\n            \"entityName\": \"CyberArkRoleForCEM023673983569\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 19,\n            \"status\": \"active_recommendation\"\n        }\n    ],\n    \"total\": 9,\n    \"next_token\": [\n        19,\n        0.10258658,\n        \"arn:aws:iam::311416839244:role/CyberArkRoleForCEM023673983569\"\n    ]\n}"
+				},
+				{
+					"name": "Get Entities - Azure",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TokenInfo}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.cem.cyberark.com/cloudEntities/api/search?platform=azure&account_id=b89ae2e9-c480-4903-b0df-711804b444a8",
+							"protocol": "https",
+							"host": [
+								"api",
+								"cem",
+								"cyberark",
+								"com"
+							],
+							"path": [
+								"cloudEntities",
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "platform",
+									"value": "azure"
+								},
+								{
+									"key": "account_id",
+									"value": "b89ae2e9-c480-4903-b0df-711804b444a8"
+								},
+								{
+									"key": "full_admin",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 29 Nov 2020 14:21:19 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "521"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "98a3ac96-36e4-41f4-9ac6-6a8f7aa7ed40"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "WxgusGFBvHcFyQA="
+						},
+						{
+							"key": "X-Amzn-Trace-Id",
+							"value": "Root=1-5fc3ae5d-4b552f824693c88366bed2dd;Sampled=0"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "X-Cache",
+							"value": "Miss from cloudfront"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 95d5bc8b4873ccfdcd27d17cb5965ff9.cloudfront.net (CloudFront)"
+						},
+						{
+							"key": "X-Amz-Cf-Pop",
+							"value": "SIN52-C3"
+						},
+						{
+							"key": "X-Amz-Cf-Id",
+							"value": "FJpSLCLfsdHKMLgHBf85kGxrCLDwniGAgO-um53AlS9hHvSPYVehpw=="
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "cf-request-id",
+							"value": "06b5fa366f0000c3185e024000000001"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=0; includeSubDomains; preload"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "5f9cf96a4fd2c318-SIN"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"hits\": [\n        {\n            \"entityId\": \"028d31f8-355c-4c29-a4b0-6f68964b98b4\",\n            \"entityName\": \"FXS TIBD\",\n            \"entityType\": \"User\",\n            \"accountId\": \"b89ae2e9-c480-4903-b0df-711804b444a8\",\n            \"accountName\": \"NEW Visual Studio Premium with MSDN\",\n            \"platformName\": \"azure\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": true,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\",\n                \"FULL_ADMIN_PAS\"\n            ],\n            \"riskTotalScore\": 100,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"e46a679f-3986-4f9c-95cf-3a702a2fd491\",\n            \"entityName\": \"SAP Cloud Appliance Library\",\n            \"entityType\": \"Ent. application\",\n            \"accountId\": \"b89ae2e9-c480-4903-b0df-711804b444a8\",\n            \"accountName\": \"NEW Visual Studio Premium with MSDN\",\n            \"platformName\": \"azure\",\n            \"isShadowAdmin\": true,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 97,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"700654bb-b93a-4001-9f57-0ad96d22096b\",\n            \"entityName\": \"TFSConnection\",\n            \"entityType\": \"Application\",\n            \"accountId\": \"b89ae2e9-c480-4903-b0df-711804b444a8\",\n            \"accountName\": \"NEW Visual Studio Premium with MSDN\",\n            \"platformName\": \"azure\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": true,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 95,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"87afe834-10b8-4cf4-a565-b33420685c6c\",\n            \"entityName\": \"cyb-cem-app\",\n            \"entityType\": \"Application\",\n            \"accountId\": \"b89ae2e9-c480-4903-b0df-711804b444a8\",\n            \"accountName\": \"NEW Visual Studio Premium with MSDN\",\n            \"platformName\": \"azure\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [],\n            \"riskTotalScore\": 0,\n            \"status\": \"ok\"\n        }\n    ],\n    \"total\": 4,\n    \"next_token\": [\n        0,\n        0.21072102,\n        \"87afe834-10b8-4cf4-a565-b33420685c6c\"\n    ]\n}"
+				},
+				{
+					"name": "Get Entities",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TokenInfo}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.cem.cyberark.com/cloudEntities/api/search?platform=aws&account_id=311416839244",
+							"protocol": "https",
+							"host": [
+								"api",
+								"cem",
+								"cyberark",
+								"com"
+							],
+							"path": [
+								"cloudEntities",
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "platform",
+									"value": "aws"
+								},
+								{
+									"key": "account_id",
+									"value": "311416839244"
+								},
+								{
+									"key": "full_admin",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 29 Nov 2020 14:25:24 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "541"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-amzn-RequestId",
+							"value": "975f444b-18ea-4c46-bcec-1b3b627a1e6c"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "x-amz-apigw-id",
+							"value": "WxhVIHKHPHcFfqA="
+						},
+						{
+							"key": "X-Amzn-Trace-Id",
+							"value": "Root=1-5fc3af53-0a5e900324a316e120dd8c1f;Sampled=0"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "X-Cache",
+							"value": "Miss from cloudfront"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 bf37a08a8e52d3968f35ae1bb4eaae79.cloudfront.net (CloudFront)"
+						},
+						{
+							"key": "X-Amz-Cf-Pop",
+							"value": "SIN52-C3"
+						},
+						{
+							"key": "X-Amz-Cf-Id",
+							"value": "O8pSV69rF5Nla6ec26phZPqnp7qTaaLvVErPoeA7MvxAxajtngLtNg=="
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "cf-request-id",
+							"value": "06b5fdf7470000c3184801f000000001"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=0; includeSubDomains; preload"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "5f9cff6babedc318-SIN"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"hits\": [\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:user/hendridws\",\n            \"entityName\": \"hendridws\",\n            \"entityType\": \"User\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": true,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\",\n                \"SHADOW_ADMIN_MFA\",\n                \"SHADOW_ADMIN_PAS\"\n            ],\n            \"riskTotalScore\": 98,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport\",\n            \"entityName\": \"AWSServiceRoleForSupport\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 52,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-elasticbeanstalk-service-role\",\n            \"entityName\": \"aws-elasticbeanstalk-service-role\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 48,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:user/donotreplyfxssc\",\n            \"entityName\": \"donotreplyfxssc\",\n            \"entityType\": \"User\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 45,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling\",\n            \"entityName\": \"AWSServiceRoleForAutoScaling\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 38,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing\",\n            \"entityName\": \"AWSServiceRoleForElasticLoadBalancing\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 33,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-elasticbeanstalk-ec2-role\",\n            \"entityName\": \"aws-elasticbeanstalk-ec2-role\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 32,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/aws-service-role/trustedadvisor.amazonaws.com/AWSServiceRoleForTrustedAdvisor\",\n            \"entityName\": \"AWSServiceRoleForTrustedAdvisor\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 30,\n            \"status\": \"active_recommendation\"\n        },\n        {\n            \"entityId\": \"arn:aws:iam::311416839244:role/CyberArkRoleForCEM023673983569\",\n            \"entityName\": \"CyberArkRoleForCEM023673983569\",\n            \"entityType\": \"Role\",\n            \"accountId\": \"311416839244\",\n            \"accountName\": \"\",\n            \"platformName\": \"aws\",\n            \"isShadowAdmin\": false,\n            \"isFullAdmin\": false,\n            \"recommendations\": [\n                \"UN_USED_PERMISSIONS\"\n            ],\n            \"riskTotalScore\": 19,\n            \"status\": \"active_recommendation\"\n        }\n    ],\n    \"total\": 9,\n    \"next_token\": [\n        19,\n        0.10258658,\n        \"arn:aws:iam::311416839244:role/CyberArkRoleForCEM023673983569\"\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Entities Details",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TokenInfo}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.cem.cyberark.com/cloudEntities/api/get-entity-details?platform=azure&account_id=<<enter account id>>&entity_id=<<enter entity id>>",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cem",
+						"cyberark",
+						"com"
+					],
+					"path": [
+						"cloudEntities",
+						"api",
+						"get-entity-details"
+					],
+					"query": [
+						{
+							"key": "platform",
+							"value": "azure"
+						},
+						{
+							"key": "account_id",
+							"value": "<<enter account id>>"
+						},
+						{
+							"key": "entity_id",
+							"value": "<<enter entity id>>"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
